@@ -14,7 +14,8 @@ class Users(Base):
 	name=Column(String(100))
 	password=Column(String(100))
 	job=Column(String(100))
-	#user_group_id=Column(Integer, ForeignKey('groups.id)'))
+	group=relationship("Groups", back_populates="users")
+	group_id=Column(Integer, ForeignKey('groups.id)'))
 
 	def passwordF(self, password):
 		self.password=pwd_context.encrypt(password)
@@ -26,15 +27,17 @@ class Groups(Base):
 	__tablename__='groups'
 	id=Column(Integer, primary_key=True)
 	age_of_group=Column(String(10))
-	#camper_id=Column(Integer, ForeignKey('campers.id)'))
+	users=relationship("Users", back_populates="groups")
+	campers=relationship("Campers", back_populates="groups")
 
 class Campers(Base):
 	__tablename__='campers'
 	id=Column(Integer, primary_key=True)
 	name=Column(String(100))
 	sex=Column(String(10))
-	#camper_group=relationship()
 	cell_phone=Column(Integer)
+	group=relationship("Groups", back_populates="campers")
+	group_id=Column(Integer, ForeignKey('groups.id)'))
 
 class Activities(Base):
 	__tablename__='activities'
