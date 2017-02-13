@@ -1,6 +1,6 @@
 from flask import Flask, url_for, flash, render_template, redirect, request, g, send_from_directory
 from flask import session as login_session
-from model import *
+#from model import *
 from werkzeug.utils import secure_filename
 import locale, os
 app=Flask(__name__)
