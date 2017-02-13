@@ -28,17 +28,19 @@ def login():
 			flash('Login Successful, welcome, %s' % user.name)
 			login_session['user']=user.name
 			login_session['id']=user.id
-			return redirect(url_for(''))
+			return redirect(url_for('homepage'))
 		else:
 			flash('Incorrect username/password combination')
 			return redirect(url_for('login'))
 
-#@app.route('/setting', methods=['GET', 'POST'])
-#def change_username():
-#	if request.method=='GET':
-#		return render_template('setting.html')
+@app.route('/setting', methods=['GET', 'POST'])
+def change_username():
+	if request.method=='GET':
+		return render_template('setting.html')
+	elif request.method=='POST':
+		
 	
 
 
 if __name__=='__main__':
-	app.run()
+	app.run(debug=True)
